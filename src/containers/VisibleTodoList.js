@@ -16,12 +16,19 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
+//todos is the prop in TodoList.js (components)
 const mapStateToProps = state => ({
   todos: getVisibleTodos(state.todos, state.visibilityFilter)
 })
 
+//onTodoClick is the callback prop in TodoList.js (components)
 const mapDispatchToProps = dispatch => ({
-  toggleTodo: id => dispatch(toggleTodo(id))
+    onTodoClick: id => dispatch(toggleTodo(id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
+const VisibleTodoList = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(TodoList)
+
+export default VisibleTodoList
